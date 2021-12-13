@@ -1,0 +1,160 @@
+|top
+clock => counter_clock[0].CLK
+clock => counter_clock[1].CLK
+clock => counter_clock[2].CLK
+clock => counter_clock[3].CLK
+clock => counter_clock[4].CLK
+clock => counter_clock[5].CLK
+clock => counter_clock[6].CLK
+clock => counter_clock[7].CLK
+clock => counter_clock[8].CLK
+clock => counter_clock[9].CLK
+clock => counter_clock[10].CLK
+clock => counter_clock[11].CLK
+clock => counter_clock[12].CLK
+clock => counter_clock[13].CLK
+clock => counter_clock[14].CLK
+clock => counter_clock[15].CLK
+clock => counter_clock[16].CLK
+clock => counter_clock[17].CLK
+clock => counter_clock[18].CLK
+clock => counter_clock[19].CLK
+clock => counter_clock[20].CLK
+clock => counter_clock[21].CLK
+clock => sevenseg_clock[0].CLK
+clock => sevenseg_clock[1].CLK
+clock => sevenseg_clock[2].CLK
+clock => sevenseg_clock[3].CLK
+clock => sevenseg_clock[4].CLK
+clock => sevenseg_clock[5].CLK
+clock => sevenseg_clock[6].CLK
+clock => sevenseg_clock[7].CLK
+clock => sevenseg_clock[8].CLK
+clock => sevenseg_clock[9].CLK
+clock => sevenseg_clock[10].CLK
+clock => sevenseg_clock[11].CLK
+clock => sevenseg_clock[12].CLK
+DS_EN1 << sevenseg_display:sevenseg_display.positive_pins
+DS_EN2 << sevenseg_display:sevenseg_display.positive_pins
+DS_EN3 << sevenseg_display:sevenseg_display.positive_pins
+DS_EN4 << sevenseg_display:sevenseg_display.positive_pins
+DS_A << sevenseg_display:sevenseg_display.segments
+DS_B << sevenseg_display:sevenseg_display.segments
+DS_C << sevenseg_display:sevenseg_display.segments
+DS_D << sevenseg_display:sevenseg_display.segments
+DS_E << sevenseg_display:sevenseg_display.segments
+DS_F << sevenseg_display:sevenseg_display.segments
+DS_G << sevenseg_display:sevenseg_display.segments
+
+
+|top|master_spi:master_spi
+miso => shifted_value.DATAB
+mosi <= shifted_value[7].DB_MAX_OUTPUT_PORT_TYPE
+clock_spi <= comb.DB_MAX_OUTPUT_PORT_TYPE
+clock => comb.IN1
+clock => shifted_value[0].CLK
+clock => shifted_value[1].CLK
+clock => shifted_value[2].CLK
+clock => shifted_value[3].CLK
+clock => shifted_value[4].CLK
+clock => shifted_value[5].CLK
+clock => shifted_value[6].CLK
+clock => shifted_value[7].CLK
+clock => position[0].CLK
+clock => position[1].CLK
+clock => position[2].CLK
+clock => position[3].CLK
+clock => hex_counter[0].CLK
+clock => hex_counter[1].CLK
+clock => hex_counter[2].CLK
+clock => hex_counter[3].CLK
+clock => hex_counter[4].CLK
+clock => hex_counter[5].CLK
+clock => hex_counter[6].CLK
+clock => hex_counter[7].CLK
+clock => div_counter[0].CLK
+clock => div_counter[1].CLK
+clock => div_counter[2].CLK
+clock => div_counter[3].CLK
+clock => spi_enable.CLK
+
+
+|top|slave_spi:slave_spi
+mosi => shifted_value[0].DATAIN
+miso <= shifted_value[7].DB_MAX_OUTPUT_PORT_TYPE
+clock => shifted_value[0].CLK
+clock => shifted_value[1].CLK
+clock => shifted_value[2].CLK
+clock => shifted_value[3].CLK
+clock => shifted_value[4].CLK
+clock => shifted_value[5].CLK
+clock => shifted_value[6].CLK
+clock => shifted_value[7].CLK
+clock => positions_read[0].CLK
+clock => positions_read[1].CLK
+clock => positions_read[2].CLK
+clock => positions_read[3].CLK
+clock => out[0].CLK
+clock => out[1].CLK
+clock => out[2].CLK
+clock => out[3].CLK
+clock => out[4].CLK
+clock => out[5].CLK
+clock => out[6].CLK
+clock => out[7].CLK
+position_to_seg[0] <= out[0].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[1] <= out[1].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[2] <= out[2].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[3] <= out[3].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[4] <= out[4].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[5] <= out[5].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[6] <= out[6].DB_MAX_OUTPUT_PORT_TYPE
+position_to_seg[7] <= out[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top|sevenseg_display:sevenseg_display
+clock => i[0].CLK
+clock => i[1].CLK
+position[0] => Mux0.IN14
+position[1] => Mux1.IN14
+position[2] => Mux2.IN14
+position[3] => Mux3.IN14
+position[4] => Mux0.IN10
+position[5] => Mux1.IN10
+position[6] => Mux2.IN10
+position[7] => Mux3.IN10
+position[8] => Mux0.IN6
+position[9] => Mux1.IN6
+position[10] => Mux2.IN6
+position[11] => Mux3.IN6
+position[12] => Mux0.IN2
+position[13] => Mux1.IN2
+position[14] => Mux2.IN2
+position[15] => Mux3.IN2
+positive_pins[0] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+positive_pins[1] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+positive_pins[2] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+positive_pins[3] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+segments[0] <= hex_table:hex_table.segments
+segments[1] <= hex_table:hex_table.segments
+segments[2] <= hex_table:hex_table.segments
+segments[3] <= hex_table:hex_table.segments
+segments[4] <= hex_table:hex_table.segments
+segments[5] <= hex_table:hex_table.segments
+segments[6] <= hex_table:hex_table.segments
+
+
+|top|sevenseg_display:sevenseg_display|hex_table:hex_table
+position[0] => Decoder0.IN3
+position[1] => Decoder0.IN2
+position[2] => Decoder0.IN1
+position[3] => Decoder0.IN0
+segments[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segments[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segments[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segments[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segments[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segments[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segments[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
